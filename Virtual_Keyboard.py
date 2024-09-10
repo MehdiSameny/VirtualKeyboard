@@ -158,8 +158,9 @@ class VirtualKeyboard(QtWidgets.QDialog):
                 self.btn_line[index].setText(self.linesBig[3][count] if status else self.linesSmall[3][count])
 
     def kb_selectBtn(self, **name):
+        btnClicked = sender()
         try:
-            key_name = name['btn'][0]
+            key_name = btnClicked.text()
             key_index = name['btn'][1]
 
             if key_name == "SPACE":
