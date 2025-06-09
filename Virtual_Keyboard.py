@@ -185,18 +185,17 @@ class VirtualKeyboard(QtWidgets.QDialog):
                 self.close()
             else:
                 if self.shift_active:
-                    self.lineEdit_Content.setText(str(self.lineEdit_Content.text()) + key_name.lower())
+                    self.lineEdit_Content.setText(str(self.lineEdit_Content.text()) + key_name.upper())
                     self.shift_active = False
                     for index, obj in enumerate(self.btn_line):
                         if obj.objectName() == "SHIFT":
                             obj.setChecked(False)
-                            obj.setChecked(False)
                     self.kb_capsLock(True)
                 else:
                     if self.caps_active:
-                        self.lineEdit_Content.setText(str(self.lineEdit_Content.text()) + key_name.lower())
+                        self.lineEdit_Content.setText(str(self.lineEdit_Content.text()) + key_name.upper())
                     else:
-                        self.lineEdit_Content.setText(str(self.lineEdit_Content.text()) + key_name)
+                        self.lineEdit_Content.setText(str(self.lineEdit_Content.text()) + key_name.lower())
                         self.kb_capsLock(True)
 
             self.lineEdit_Content.setFocus()
@@ -217,7 +216,7 @@ class VirtualKeyboard(QtWidgets.QDialog):
             self.close()
 
     def closeEvent(self, event):
-        self.lineedit_content.emit(self.lineEdit_Content.text())
+        self.signal_text.emit(self.lineEdit_Content.text())
         print("[KEYBOARD] :", self.lineEdit_Content.text())
         event.accept()
 
